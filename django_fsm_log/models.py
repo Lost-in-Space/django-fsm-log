@@ -15,6 +15,7 @@ from .utils import import_class_by_path
 class StateLog(models.Model):
     timestamp = models.DateTimeField(default=now)
     by = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'), blank=True, null=True)
+    source = models.CharField(max_length=255, db_index=True)
     state = models.CharField(max_length=255, db_index=True)
     transition = models.CharField(max_length=255)
 
